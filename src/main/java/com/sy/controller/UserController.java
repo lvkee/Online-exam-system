@@ -28,11 +28,14 @@ public class UserController {
 		return "redirect:/admin/html/login.html";
 	}
 
-	//表单提交过来的路径
+	/**
+	 * application_context必须与form表单请求URL相同 否则报404
+	 */
 	@RequestMapping("/checkLogin")
 	public String checkLogin(User user,Model model){
 		//调用service方法
 		user = userServivce.checkLogin(user.getUsername(), user.getPassword());
+		System.out.println("test123");
 		//若有user则添加到model里并且跳转到成功页面
 		if(user != null){
 			model.addAttribute("user",user);

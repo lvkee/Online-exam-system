@@ -22,7 +22,6 @@
 		<property name="jdbcUrl" value="${jdbc.url}"></property>
 		<property name="user" value="${jdbc.username}"></property>
 		<property name="password" value="${jdbc.password}"></property>
-	
 		<!-- c3p0连接池的私有属性 -->
 		<property name="maxPoolSize" value="30"></property>
 		<property name="minPoolSize" value="10"></property>
@@ -54,5 +53,21 @@
 		<!-- 给出需要扫描的Dao接口包 -->
 		<property name="basePackage" value="com.sy.dao"></property>
 	</bean>
+
+	<!-- 扫描service包下所有使用注解的类型 -->
+	<context:component-scan base-package="com.sy.service"/>
+	<bean id="paramValidAspect" class="com.sy.component.LoginComponent"/>
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<context:component-scan base-package="com.sy.*"/>
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<!-- 注入数据库的连接池 -->
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<!-- 配置基于注解的声明式事务
+		默认使用注解来管理事务行为
+	 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 
 </beans>
