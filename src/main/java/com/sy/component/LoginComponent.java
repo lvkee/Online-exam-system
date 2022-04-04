@@ -1,5 +1,7 @@
 package com.sy.component;
 
+import com.sy.controller.UserController;
+import com.sy.service.Impl.UserServiceImpl;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

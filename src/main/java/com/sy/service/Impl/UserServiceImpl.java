@@ -7,9 +7,15 @@ import com.sy.dao.UserDao;
 import com.sy.entity.User;
 import com.sy.service.UserService;
 
+import java.util.List;
+import java.util.Vector;
+
 @Service
 public class UserServiceImpl implements UserService {
-
+    /* Enum<String> stringEnum;
+     Iterable<String> stringIterable;
+     List<String> stringList;
+     Vector<String> stringVector;*/
     @Autowired
     private UserDao userDao;
 
