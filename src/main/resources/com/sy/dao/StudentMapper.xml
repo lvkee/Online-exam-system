@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sy.dao.StudentMapper">
+
+    <!--<resultMap id="getTeacherMap" type="Teacher">
+        <id column="t_id" property="tId"/>
+        <result column="t_name" property="tName"/>
+        <result column="t_nickname" property="tNickname"/>
+        <result column="t_pwd" property="tPwd"/>
+        <result column="t_email" property="tEmail"/>
+        <result column="t_create_date" property="tCreateDate"/>
+        <result column="t_last_update" property="tLastUpdate"/>
+        <collection property="organizationList" ofType="Organization">
+            <id column="o_id" property="oId"/>
+            <result column="o_name" property="oName"/>
+            <result column="o_create_date" property="oCreateDate"/>
+            <result column="o_last_update" property="oLastUpdate"/>
+        </collection>
+    </resultMap>-->
+
+    <!--查询指定学生所在的组织-->
+    <!--<select id="getTeachers" resultMap="getTeacherMap">
+
+        SELECT t.*,
+               o.*
+        FROM teacher t
+                 JOIN teacher_org torg ON torg.t_id = t.t_id
+                 JOIN organization o ON o.o_id = torg.o_id
+        WHERE t.t_id = #{id}
+    </select>-->
+
+    <!-- 添加学生 -->
+    <insert id="addStudent">
+
+        INSERT INTO student (s_name, s_nickname, s_pwd, s_email, s_create_date, s_update_date, s_birth)
+            VALUES (#{sName}, #{sNickname}, #{sPwd}, #{sEmail}, #{sCreateDate}, #{sUpdateDate}, #{sBirth})
+
+    </insert>
+
+    <!-- 修改学生 -->
+    <update id="updateStudent">
+
+        update student set s_name = #{sName}, s_nickname = #{sNickname}, s_pwd = #{sPwd}, s_email = #{sEmail}, s_update_date = #{sUpdateDate},s_birth = #{sBirth}
+            where s_id = #{sId}
+
+    </update>
+
+<!--    通过 id 查询某个学生信息 -->
+    <select id="queryStudent" resultType="com.sy.entity.Student">
+
+        select * from student where s_id = #{sId}
+
+    </select>
+
+    <!--    通过 id 删除某个学生 -->
+    <delete id="deleteStudent">
+
+        delete from student where s_id = #{sId}
+
+    </delete>
+
+    <!-- 分页SQL语句 -->
+    <select id="selectStudents" resultType="com.sy.entity.Student">
+        select
+            *
+        from student limit #{startPos},#{pageSize}
+    </select>
+
+    <!-- 取得记录的总数 -->
+    <select id="getStudentsCount" resultType="long">
+        SELECT COUNT(*) FROM student
+    </select>
+</mapper>

@@ -16,6 +16,21 @@
         http://www.springframework.org/schema/mvc 
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
         ">
+
+    <!-- 自定义参数绑定 -->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <!-- 转换器 -->
+        <property name="converters">
+            <!-- 日期类型的转换 -->
+            <bean class="com.sy.converter.DateConverter"/>
+        </property>
+    </bean>
+
+    <bean id="hibernateValidator"
+          class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+            <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+    </bean>
+
     <!-- 配置springMVC -->
     <!-- 1：开启springMVC注解模式 -->
     <!-- 简化配置：
@@ -23,7 +38,7 @@
          (2)提供一系列：数据绑定，数字和日期的format  @NumberFormat,@DataTimeFormat
         xml,json默认读写支持
      -->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven conversion-service="conversionService" validator="hibernateValidator"/>
     <mvc:resources mapping="/css/**" location="admin/css" />
     <!-- 2：配置jsp显示ViewResolver -->
     <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

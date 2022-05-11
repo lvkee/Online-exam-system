@@ -4,9 +4,10 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
-/*用户登录AOP*/
-/*@Aspect
-@Component*/
+/**
+ * 用户登录AOP
+ * @author chris
+ */
 public class LoginComponent {
 
     @Pointcut("execution(* com.sy.service.*Service*.*(..))")

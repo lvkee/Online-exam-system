@@ -3,6 +3,9 @@ package com.sy.entity;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author chris
+ */
 public class Teacher {
 
     private int tId;

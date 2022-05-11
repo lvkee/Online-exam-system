@@ -1,5 +1,6 @@
 package top.liuweiqi;
 
+import com.sy.dao.StudentMapper;
 import com.sy.dao.TeacherMapper;
 import com.sy.entity.Organization;
 import com.sy.entity.Teacher;
@@ -46,12 +47,29 @@ public class AppTest {
     }
 
     /**
-     * 测试
+     * 测试添加教师
      */
     @Test
     public void test02() {
         TeacherMapper teacherMapper = session.getMapper(TeacherMapper.class);
+        System.out.println(new Date());
         teacherMapper.addTeachers("1986985788ab", "张老师", "123456a", "1986985788@qq.com", new Date(), new Date());
+    }
+
+    /**
+     * 测试添加学生
+     */
+    @Test
+    public void test03() {
+        StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+        Date date = new Date();
+        studentMapper.addStudent("1986985788aaa", "张三", "123456a", "1986985788@qq.com", date, date, date);
+    }
+
+    @Test
+    public void test04() {
+        StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+        System.out.println(studentMapper.queryStudent(34));
     }
 
     /*@Test
@@ -66,6 +84,7 @@ public class AppTest {
     @After
     public void end() {
         if (session != null) {
+            session.commit();
             session.close();
         }
     }

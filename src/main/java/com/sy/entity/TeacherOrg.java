@@ -1,5 +1,8 @@
 package com.sy.entity;
 
+/**
+ * @author chris
+ */
 public class TeacherOrg {
 
     private Teacher teacher;

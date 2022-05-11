@@ -35,8 +35,8 @@
     <context:annotation-config/>
     <context:component-scan base-package="com.sy.service"/>
 
-    <bean id="paramValidAspect" class="com.sy.component.LoginComponent"/>
-    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <!--<bean id="paramValidAspect" class="com.sy.component.LoginComponent"/>
+    <aop:aspectj-autoproxy proxy-target-class="true"/>-->
 
 
     <!--4. 添加事务管理 : DataSourceTransactionManager dataSource:引用上面定义的数据源   -->
