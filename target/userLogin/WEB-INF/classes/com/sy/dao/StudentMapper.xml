@@ -72,8 +72,4 @@
     <select id="getStudentsCount" resultType="long">
         SELECT COUNT(*) FROM student
     </select>
-
-    <!--<select id="delTeachers" resultType="integer">
-
-    </select>-->
 </mapper>

@@ -59,6 +59,7 @@ public class StudentServiceImpl implements StudentService {
             page = new Page(totalCount, 1);
             students = this.studentMapper.selectStudents(page.getStartPos(), page.getPageSize());
         }
+        System.out.println(students.toString());
         model.addAttribute("students", students);
         model.addAttribute("page", page);
     }

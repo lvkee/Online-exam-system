@@ -39,6 +39,7 @@
       </div>
     </div>
 
+<%--    start 侧边栏 --%>
     <nav class="side-menu content mCustomScrollbar" data-mcs-theme="minimal-dark">
       <ul>
         <li>
@@ -117,6 +118,9 @@
           <hr>
         </section>
 
+        <%--    end 侧边栏 --%>
+
+        <%-- 对不同功能指定不同 class ， 在 public.js 中定义不同函数 --%>
         <button class="btn btn-secondary JopenMaskPanel_addStudent mr-10" style="margin-bottom: 20px; margin-left: 20px;">添加</button>
 
         <table class="table table-bordered table-striped table-hover">
@@ -139,6 +143,7 @@
             <td id="s_email">${student.sEmail}</td>
             <td id="s_birth">${student.sBirth}</td>
             <td>
+              <%-- 对不同功能指定不同 class ， 在 public.js 中定义不同函数 --%>
               <a title="编辑" id="${student.sId}" class="JopenMaskPanel_updateStudent mr-5">编辑</a>
 <%--              <a title="详情" class="mr-5">详情</a>--%>
               <a title="删除" class="a_delete">删除</a>
@@ -147,13 +152,11 @@
           </c:forEach>
           </tbody>
         </table>
-        <p>${studentSingle.sId}</p>
         <div class="panel panel-default">
           <div class="panel-bd">
             <div class="pagination"></div>
           </div>
         </div>
-        <!--开始::结束-->
       </div>
     </main>
   </div>

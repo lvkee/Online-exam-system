@@ -1,72 +1,113 @@
 package com.sy.entity;
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
-/**
- * @author chris
- */
-public class Question {
+public class Question implements Serializable {
 
-    private int id;
+    private static final long serialVersionUID = 8826266720383164363L;
 
-    private int questionType;
+    private Integer id;
 
-    private int subjectId;
+    /**
+     * 	1.单选题 2.多选题 3.判断题 4.填空题 5.简答题
+     */
+    private Integer questionType;
 
-    private int score;
+    /**
+     * 学科
+     */
+    private Integer subjectId;
 
-    private int gradeLevel;
+    /**
+     * 题目总分(千分制)
+     */
+    private Integer score;
 
+    /**
+     * 级别
+     */
+    private Integer gradeLevel;
+
+    /**
+     * 题目难度
+     */
+    private Integer difficult;
+
+    /**
+     * 正确答案
+     */
     private String correct;
 
-    private int infoTextContent;
+    /**
+     * 题目 填空、 题干、解析、答案等信息
+     */
+    private Integer infoTextContentId;
 
-    private int createUser;
+    /**
+     * 创建人
+     */
+    private Integer createUser;
 
-    private boolean deleted;
+    /**
+     * 1.正常
+     */
+    private Integer status;
 
-    private int status;
-
+    /**
+     * 创建时间
+     */
     private Date createTime;
 
-    public int getId() {
+    private Boolean deleted;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getQuestionType() {
+    public Integer getQuestionType() {
         return questionType;
     }
 
-    public void setQuestionType(int questionType) {
+    public void setQuestionType(Integer questionType) {
         this.questionType = questionType;
     }
 
-    public int getSubjectId() {
+    public Integer getSubjectId() {
         return subjectId;
     }
 
-    public void setSubjectId(int subjectId) {
+    public void setSubjectId(Integer subjectId) {
         this.subjectId = subjectId;
     }
 
-    public int getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 
-    public int getGradeLevel() {
+    public Integer getGradeLevel() {
         return gradeLevel;
     }
 
-    public void setGradeLevel(int gradeLevel) {
+    public void setGradeLevel(Integer gradeLevel) {
         this.gradeLevel = gradeLevel;
+    }
+
+    public Integer getDifficult() {
+        return difficult;
+    }
+
+    public void setDifficult(Integer difficult) {
+        this.difficult = difficult;
     }
 
     public String getCorrect() {
@@ -74,38 +115,30 @@ public class Question {
     }
 
     public void setCorrect(String correct) {
-        this.correct = correct;
+        this.correct = correct == null ? null : correct.trim();
     }
 
-    public int getInfoTextContent() {
-        return infoTextContent;
+    public Integer getInfoTextContentId() {
+        return infoTextContentId;
     }
 
-    public void setInfoTextContent(int infoTextContent) {
-        this.infoTextContent = infoTextContent;
+    public void setInfoTextContentId(Integer infoTextContentId) {
+        this.infoTextContentId = infoTextContentId;
     }
 
-    public int getCreateUser() {
+    public Integer getCreateUser() {
         return createUser;
     }
 
-    public void setCreateUser(int createUser) {
+    public void setCreateUser(Integer createUser) {
         this.createUser = createUser;
     }
 
-    public boolean isDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
-
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -117,6 +150,25 @@ public class Question {
         this.createTime = createTime;
     }
 
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
+
+/*    public void setCorrectFromVM(String correct, List<String> correctArray) {
+        int qType = this.getQuestionType();
+        if (qType == QuestionTypeEnum.MultipleChoice.getCode()) {
+            String correctJoin = ExamUtil.contentToString(correctArray);
+            this.setCorrect(correctJoin);
+        } else {
+            this.setCorrect(correct);
+        }
+    }*/
+
     @Override
     public String toString() {
         return "Question{" +
@@ -125,12 +177,13 @@ public class Question {
                 ", subjectId=" + subjectId +
                 ", score=" + score +
                 ", gradeLevel=" + gradeLevel +
+                ", difficult=" + difficult +
                 ", correct='" + correct + '\'' +
-                ", infoTextContent=" + infoTextContent +
+                ", infoTextContentId=" + infoTextContentId +
                 ", createUser=" + createUser +
-                ", deleted=" + deleted +
                 ", status=" + status +
                 ", createTime=" + createTime +
+                ", deleted=" + deleted +
                 '}';
     }
 }

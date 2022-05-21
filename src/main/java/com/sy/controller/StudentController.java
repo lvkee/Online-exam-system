@@ -71,8 +71,8 @@ public class StudentController extends BaseController {
         }
     }
 
-    @RequestMapping(value = "queryStudent", method = RequestMethod.GET)
-    public void queryStudent(@Valid @ModelAttribute("sId") int sId, Model model, HttpServletResponse response) throws IOException {
+    @RequestMapping(value = "queryStudent/{sId}", method = RequestMethod.GET)
+    public void queryStudent(@Valid @PathVariable int sId, Model model, HttpServletResponse response) throws IOException {
         String student = studentService.queryStudent(sId);
         if (student != null) {
             response.setCharacterEncoding("UTF-8");
@@ -84,8 +84,8 @@ public class StudentController extends BaseController {
             }
         }
 
-    @RequestMapping(value = "deleteStudent", method = RequestMethod.GET)
-    public ModelAndView deleteStudent(@ModelAttribute("sId") int sId) {
+    @RequestMapping(value = "deleteStudent/{sId}", method = RequestMethod.GET)
+    public ModelAndView deleteStudent(@PathVariable int sId) {
         boolean result = studentService.deleteStudent(sId);
         if (result) {
             return new ModelAndView("redirect:/student/students");

@@ -1,9 +1,14 @@
 package top.liuweiqi;
 
+import com.sy.dao.QuestionMapper;
 import com.sy.dao.StudentMapper;
 import com.sy.dao.TeacherMapper;
 import com.sy.entity.Organization;
+import com.sy.entity.Question;
 import com.sy.entity.Teacher;
+import com.sy.service.BaseService;
+import com.sy.service.QuestionService;
+import com.sy.service.impl.QuestionServiceImpl;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -11,6 +16,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.InputStream;
 import java.util.Date;
@@ -18,7 +24,13 @@ import java.util.List;
 
 public class AppTest {
 
+//    private final QuestionService questionService;
+
     private SqlSession session;
+
+    /*private AppTest(QuestionService questionService) {
+        this.questionService = questionService;
+    }*/
 
     @Before
     public void start() {
@@ -71,6 +83,32 @@ public class AppTest {
         StudentMapper studentMapper = session.getMapper(StudentMapper.class);
         System.out.println(studentMapper.queryStudent(34));
     }
+
+    /**
+     * 测试添加题目
+     */
+    @Test
+    public void test05() {
+        QuestionMapper questionMapper = session.getMapper(QuestionMapper.class);
+        QuestionService questionService = new QuestionServiceImpl(questionMapper);
+        Question question = new Question();
+        question.setId(1);
+        questionService.insert(question);
+    }
+
+    /**
+     * 测试删除题目 （软删除）
+     */
+    @Test
+    public void test06() {
+        QuestionMapper questionMapper = session.getMapper(QuestionMapper.class);
+        QuestionService questionService = new QuestionServiceImpl(questionMapper);
+        Question question = new Question();
+        question.setId(1);
+        questionService.insert(question);
+    }
+    
+    
 
     /*@Test
     public void test02() throws IOException {

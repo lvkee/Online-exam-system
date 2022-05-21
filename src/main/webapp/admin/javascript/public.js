@@ -99,7 +99,7 @@ $(function(){
 			btn: ['确定','取消'] //按钮
 		}, function(){
 			console.log("yes");
-			var str = "deleteStudent?sId=" + $('.JopenMaskPanel_updateStudent').attr("id");
+			var str = "deleteStudent/" + $('.JopenMaskPanel_updateStudent').attr("id");
 			window.location.href = str;
 		}, function(){
 			console.log("no");
@@ -133,7 +133,7 @@ $(function(){
 				xmlhttp.send() // 发送异步请求
 			})
 		}
-		ajax("GET", "queryStudent?sId=" + $(this).attr("id"));
+		ajax("GET", "queryStudent/" + $(this).attr("id"));
 		document.form_student.action = "updateStudent";
 		$('.dialog,.mask').show();
 		$('.dialog').css('box-shadow','none');
