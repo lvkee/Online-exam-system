@@ -1,8 +1,10 @@
+/*
 package com.sy.viewmodel.student.user;
 
-import com.mindskip.xzs.domain.User;
-import com.mindskip.xzs.utility.DateTimeUtil;
-import com.mindskip.xzs.viewmodel.BaseVM;
+
+import com.sy.entity.User;
+import com.sy.util.DateTimeUtil;
+import com.sy.viewmodel.BaseVM;
 
 public class UserResponseVM extends BaseVM {
 
@@ -165,3 +167,4 @@ public class UserResponseVM extends BaseVM {
         this.imagePath = imagePath;
     }
 }
+*/

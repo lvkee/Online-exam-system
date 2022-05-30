@@ -1,20 +1,30 @@
 package com.sy.service.impl;
 
+import com.sy.entity.Question;
+import com.sy.entity.other.KeyValue;
+import com.sy.entity.TextContent;
+import com.sy.entity.enums.QuestionStatusEnum;
+import com.sy.entity.enums.QuestionTypeEnum;
+import com.sy.entity.question.QuestionItemObject;
+import com.sy.entity.question.QuestionObject;
+import com.sy.dao.QuestionMapper;
+import com.sy.service.QuestionService;
+import com.sy.service.SubjectService;
+import com.sy.service.TextContentService;
+import com.sy.util.DateTimeUtil;
+import com.sy.util.JsonUtil;
+import com.sy.util.ModelMapperSingle;
+import com.sy.util.ExamUtil;
+import com.sy.viewmodel.admin.question.QuestionEditItemVM;
+import com.sy.viewmodel.admin.question.QuestionEditRequestVM;
+import com.sy.viewmodel.admin.question.QuestionPageRequestVM;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.sy.dao.QuestionMapper;
-import com.sy.entity.Question;
-import com.sy.entity.Student;
-import com.sy.service.QuestionService;
-import com.sy.util.Page;
-import com.sy.viewmodel.admin.question.QuestionPageRequestVM;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,57 +32,27 @@ import java.util.stream.Collectors;
 @Service
 public class QuestionServiceImpl extends BaseServiceImpl<Question> implements QuestionService {
 
-//    protected final static ModelMapper modelMapper = ModelMapperSingle.Instance();
+    protected final static ModelMapper modelMapper = ModelMapperSingle.Instance();
     private final QuestionMapper questionMapper;
-//    private final TextContentService textContentService;
-//    private final SubjectService subjectService;
+    private final TextContentService textContentService;
+    private final SubjectService subjectService;
 
-  /* @Autowired
+    @Autowired
     public QuestionServiceImpl(QuestionMapper questionMapper, TextContentService textContentService, SubjectService subjectService) {
         super(questionMapper);
         this.textContentService = textContentService;
         this.questionMapper = questionMapper;
         this.subjectService = subjectService;
-    }*/
-
-    @Autowired
-    public QuestionServiceImpl(QuestionMapper questionMapper) {
-        super(questionMapper);
-        this.questionMapper = questionMapper;
     }
 
     @Override
-    public void showQuestionsByPage(HttpServletRequest request, Model model) {
-        String pageNow = request.getParameter("pageNow");
-
-        Page page = null;
-
-        List<Question> questions = new ArrayList<Question>();
-
-        int totalCount = (int) questionMapper.selectAllCount();
-
-        if (pageNow != null) {
-            page = new Page(totalCount, Integer.parseInt(pageNow));
-            questions = this.questionMapper.selectQuestions(page.getStartPos(), page.getPageSize());
-        } else {
-            page = new Page(totalCount, 1);
-            questions = this.questionMapper.selectQuestions(page.getStartPos(), page.getPageSize());
-        }
-        for (Question question : questions ) {
-            System.out.println(question.toString());
-        }
-        model.addAttribute("questions", questions);
-        model.addAttribute("page", page);
-    }
-
-     @Override
     public PageInfo<Question> page(QuestionPageRequestVM requestVM) {
         return PageHelper.startPage(requestVM.getPageIndex(), requestVM.getPageSize(), "id desc").doSelectPageInfo(() ->
                 questionMapper.page(requestVM)
         );
     }
 
-/*
+
     @Override
     @Transactional
     public Question insertFullQuestion(QuestionEditRequestVM model, Integer userId) {
@@ -206,7 +186,7 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
             KeyValue keyValue = mouthCount.stream().filter(kv -> kv.getName().equals(md)).findAny().orElse(null);
             return null == keyValue ? 0 : keyValue.getValue();
         }).collect(Collectors.toList());
-    }*/
+    }
 
 
 }

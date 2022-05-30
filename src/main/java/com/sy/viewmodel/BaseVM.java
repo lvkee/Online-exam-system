@@ -1,6 +1,7 @@
 package com.sy.viewmodel;
 
-import com.mindskip.xzs.utility.ModelMapperSingle;
+
+import com.sy.util.ModelMapperSingle;
 import org.modelmapper.ModelMapper;
 
 /**

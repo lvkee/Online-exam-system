@@ -1,7 +1,5 @@
 package com.sy.service;
 
-import com.sy.entity.Teacher;
-
 /**
  * @author chris
  */
@@ -13,6 +11,6 @@ public interface TeacherService {
      * @param password 老师密码
      * @return String
      */
-    String checkLogin(String name, String password);
+    String home(String name, String password);
 
 }

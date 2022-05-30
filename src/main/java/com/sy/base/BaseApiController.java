@@ -1,17 +1,12 @@
 package com.sy.base;
 
 
-import com.sy.context.WebContext;
-import com.sy.domain.User;
+//import com.sy.context.WebContext;
 import com.sy.util.ModelMapperSingle;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * @version 3.3.0
  * @description: The type Base api controller.
- * Copyright (C), 2019-2021, 武汉思维跳跃科技有限公司
- * @date 2021 /5/26 10:45
  */
 public class BaseApiController {
     /**
@@ -25,8 +20,8 @@ public class BaseApiController {
     /**
      * The Web context.
      */
-    @Autowired
-    protected WebContext webContext;
+    /*@Autowired
+    protected WebContext webContext;*/
 
     /**
      * Gets current user.

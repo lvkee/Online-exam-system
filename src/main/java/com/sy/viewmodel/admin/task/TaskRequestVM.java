@@ -1,6 +1,7 @@
 package com.sy.viewmodel.admin.task;
 
-import com.mindskip.xzs.viewmodel.admin.exam.ExamResponseVM;
+
+import com.sy.viewmodel.admin.exam.ExamResponseVM;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;

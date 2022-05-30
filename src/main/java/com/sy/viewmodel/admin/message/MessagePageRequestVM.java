@@ -1,8 +1,6 @@
 package com.sy.viewmodel.admin.message;
 
-import com.mindskip.xzs.base.BasePage;
-
-
+import com.sy.base.BasePage;
 
 public class MessagePageRequestVM extends BasePage {
     private String sendUserName;

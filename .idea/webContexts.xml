@@ -3,6 +3,7 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
+        <entry key="file://$PROJECT_DIR$/src/main/java/com/sy/controller/AdminController.java" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/admin/html/table-student.jsp" value="file://$PROJECT_DIR$/src/main/webapp/admin/html" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/client/views/index.html" value="file://$PROJECT_DIR$/src/main/webapp/client/views" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/client/views/login.html" value="file://$PROJECT_DIR$/src/main/webapp/client/views" />

@@ -1,7 +1,7 @@
 package com.sy.service.impl;
 
 import com.sy.dao.TextContentMapper;
-import com.sy.domain.TextContent;
+import com.sy.entity.TextContent;
 import com.sy.service.TextContentService;
 import com.sy.util.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;

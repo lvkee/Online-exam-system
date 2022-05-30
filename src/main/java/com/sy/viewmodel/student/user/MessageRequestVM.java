@@ -1,6 +1,7 @@
 package com.sy.viewmodel.student.user;
 
-import com.mindskip.xzs.base.BasePage;
+
+import com.sy.base.BasePage;
 
 public class MessageRequestVM extends BasePage {
 

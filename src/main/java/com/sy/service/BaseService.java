@@ -31,7 +31,7 @@ public interface BaseService<T> {
     int insertByFilter(T record);
 
     /**
-     * 根据id查询数据
+     * 根据 id 查询数据
      *
      * @param id
      * @return

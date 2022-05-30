@@ -1,8 +1,6 @@
 package com.sy.viewmodel.admin.education;
 
-import com.mindskip.xzs.viewmodel.BaseVM;
-
-
+import com.sy.viewmodel.BaseVM;
 
 public class SubjectResponseVM extends BaseVM {
     private Integer id;

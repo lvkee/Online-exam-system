@@ -1,6 +1,6 @@
 package com.sy.viewmodel.admin.exam;
 
-import com.mindskip.xzs.viewmodel.admin.question.QuestionEditRequestVM;
+import com.sy.viewmodel.admin.question.QuestionEditRequestVM;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;

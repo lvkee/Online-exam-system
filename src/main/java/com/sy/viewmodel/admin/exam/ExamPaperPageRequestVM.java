@@ -1,8 +1,6 @@
 package com.sy.viewmodel.admin.exam;
 
-import com.mindskip.xzs.base.BasePage;
-
-
+import com.sy.base.BasePage;
 
 public class ExamPaperPageRequestVM extends BasePage {
 

@@ -1,6 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+  String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,16 +17,8 @@
   <meta name="author" content="DeathGhost" />
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-  <link rel="icon" href="${pageContext.request.contextPath}/admin/images/icon/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admin/css/style.css" />
-  <script src="${pageContext.request.contextPath}/admin/javascript/jquery.js"></script>
-  <script src="${pageContext.request.contextPath}/admin/javascript/plug-ins/customScrollbar.min.js"></script>
-  <script src="${pageContext.request.contextPath}/admin/javascript/plug-ins/echarts.min.js"></script>
-  <script src="${pageContext.request.contextPath}/admin/javascript/plug-ins/layerUi/layer.js"></script>
-  <script src="${pageContext.request.contextPath}/admin/editor/ueditor.config.js"></script>
-  <script src="${pageContext.request.contextPath}/admin/editor/ueditor.all.js"></script>
-  <script src="${pageContext.request.contextPath}/admin/javascript/plug-ins/pagination.js"></script>
-  <script src="${pageContext.request.contextPath}/admin/javascript/public.js"></script>
+  <link rel="icon" href="<%=contextPath%>/admin/images/icon/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="<%=contextPath%>/admin/css/style.css" />
 </head>
 <body>
 <div class="main-wrap">
@@ -39,7 +34,6 @@
       </div>
     </div>
 
-<%--    start 侧边栏 --%>
     <nav class="side-menu content mCustomScrollbar" data-mcs-theme="minimal-dark">
       <ul>
         <li>
@@ -48,7 +42,7 @@
               </i>用户管理<i class="icon-angle-right"></i>
             </dt>
             <dd>
-              <a href="#">学生管理</a>
+              <a href="<%=contextPath%>/student/students">学生管理</a>
             </dd>
             <dd>
               <a href="#">教师管理</a>
@@ -63,12 +57,15 @@
             <dt>
               </i>试卷管理<i class="icon-angle-right"></i>
             </dt>
+            <dd>
+              <a id="<%=contextPath%>" class="a_questions">试题管理</a>
+            </dd>
           </dl>
         </li>
         <li>
           <dl>
             <dt>
-              </i>试题管理<i class="icon-angle-right"></i>
+              <a href="<%=contextPath%>/student/students">学生管理</a>
             </dt>
           </dl>
         </li>
@@ -81,8 +78,8 @@
         </li>
       </ul>
     </nav>
-
   </div>
+
   <div class="content-wrap">
     <header class="top-hd">
       <div class="hd-lt">
@@ -97,13 +94,13 @@
             <a><i class="icon-random"></i>清除缓存</a>
           </li>
           <li>
-            <a><i class="icon-user"></i>管理员:<em>DeathGhost</em></a>
+            <a><i class="icon-user"></i>欢迎您，<%=session.getAttribute("admin")%></a>
           </li>
           <li>
             <a><i class="icon-bell-alt"></i>系统消息</a>
           </li>
           <li>
-            <a href="javascript:void(0)" id="JsSignOut"><i class="icon-signout"></i>安全退出</a>
+            <a href="<%=contextPath%>/admin/logout" id="JsSignOut"><i class="icon-signout"></i>安全退出</a>
           </li>
         </ul>
       </div>
@@ -146,7 +143,7 @@
               <%-- 对不同功能指定不同 class ， 在 public.js 中定义不同函数 --%>
               <a title="编辑" id="${student.sId}" class="JopenMaskPanel_updateStudent mr-5">编辑</a>
 <%--              <a title="详情" class="mr-5">详情</a>--%>
-              <a title="删除" class="a_delete">删除</a>
+              <a title="删除" onclick="del_student(this, ${student.sId})">删除</a>
             </td>
           </tr>
           </c:forEach>
@@ -217,6 +214,16 @@
 </div>
 </form:form>
 
+<script src="<%=contextPath%>/admin/javascript/jquery.js"></script>
+<script src="<%=contextPath%>/admin/javascript/plug-ins/customScrollbar.min.js"></script>
+<script src="<%=contextPath%>/admin/javascript/plug-ins/echarts.min.js"></script>
+<script src="<%=contextPath%>/admin/javascript/plug-ins/layerUi/layer.js"></script>
+<script src="<%=contextPath%>/admin/editor/ueditor.config.js"></script>
+<script src="<%=contextPath%>/admin/editor/ueditor.all.js"></script>
+<script src="<%=contextPath%>/admin/javascript/plug-ins/pagination.js"></script>
+<script src="<%=contextPath%>/admin/javascript/public.js"></script>
+<script src="<%=contextPath%>/admin/javascript/pages/student.js"></script>
+<script src="<%=contextPath%>/admin/javascript/pages/index.js"></script>
 <%-- 分页 --%>
 <script>
   $(".pagination").createPage({

@@ -1,6 +1,7 @@
 package com.sy.viewmodel.student.exam;
 
-import com.mindskip.xzs.base.BasePage;
+
+import com.sy.base.BasePage;
 
 import javax.validation.constraints.NotNull;
 

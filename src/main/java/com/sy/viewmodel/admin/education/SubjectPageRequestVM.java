@@ -1,8 +1,6 @@
 package com.sy.viewmodel.admin.education;
 
-import com.mindskip.xzs.base.BasePage;
-
-
+import com.sy.base.BasePage;
 
 public class SubjectPageRequestVM extends BasePage {
     private Integer id;

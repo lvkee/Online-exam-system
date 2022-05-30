@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  */
 public class HtmlUtil {
     /**
-     * Clear string.
+     * 清除 HTML 标识
      *
      * @param htmlStr the html str
      * @return the string

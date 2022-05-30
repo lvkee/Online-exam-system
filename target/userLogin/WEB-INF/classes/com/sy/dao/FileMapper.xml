@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sy.dao.FileMapper">
+    <resultMap id="BaseResultMap" type="com.sy.entity.FileEntity">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="file_name" jdbcType="VARCHAR" property="fileName"/>
+        <result column="file_add" jdbcType="VARCHAR" property="fileAdd"/>
+        <result column="suffix" jdbcType="VARCHAR" property="suffix"/>
+        <result column="f_type" jdbcType="VARCHAR" property="fType"/>
+        <result column="create_time" jdbcType="DATE" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, file_name, file_add, suffix, f_type, create_time
+  </sql>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_file
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+    <insert id="insert" parameterType="com.sy.entity.FileEntity" useGeneratedKeys="true" keyProperty="id">
+        insert into t_file
+        (id, file_name, file_add,
+      suffix, f_type, create_time
+      )
+        values (#{id,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR}, #{fileAdd,jdbcType=VARCHAR},
+        #{suffix,jdbcType=VARCHAR}, #{fType,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}
+        )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.sy.entity.FileEntity" useGeneratedKeys="true" keyProperty="id">
+        insert into t_file
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="fileName != null">
+                file_name,
+            </if>
+            <if test="fileAdd != null">
+                file_add,
+            </if>
+            <if test="suffix != null">
+                suffix,
+            </if>
+            <if test="fType != null">
+                f_type,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="fileName != null">
+                #{fileName,jdbcType=VARCHAR},
+            </if>
+            <if test="fileAdd != null">
+                #{fileAdd,jdbcType=VARCHAR},
+            </if>
+            <if test="suffix != null">
+                #{suffix,jdbcType=VARCHAR},
+            </if>
+            <if test="fType != null">
+                #{fType,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_file
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.sy.entity.FileEntity">
+        update t_file
+        <set>
+            <if test="fileName != null">
+                file_name = #{fileName,jdbcType=VARCHAR},
+            </if>
+            <if test="fileAdd != null">
+                file_add = #{fileAdd,jdbcType=VARCHAR},
+            </if>
+            <if test="suffix != null">
+                suffix = #{suffix,jdbcType=VARCHAR},
+            </if>
+            <if test="fType != null">
+                f_type = #{fType,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=DATE},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.sy.entity.FileEntity">
+    update t_file
+    set
+            #{fileName,jdbcType=VARCHAR},
+            #{fileAdd,jdbcType=VARCHAR},
+            #{suffix,jdbcType=VARCHAR},
+            #{fType,jdbcType=VARCHAR},
+            #{createTime,jdbcType=DATE},
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="page" resultMap="BaseResultMap" parameterType="com.sy.viewmodel.admin.file.FilePageRequestVM">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_file
+        <where>
+            <if test="id != null ">
+                and id= #{id}
+            </if>
+            <if test="fType != null and fType != ''">
+                and f_type= #{fType}
+            </if>
+            <if test="fileName != null and fileName != ''">
+                and file_name like concat('%',#{fileName},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectByFilename" resultType="com.sy.entity.other.KeyValue">
+        SELECT  id as value,file_name as name
+		from t_file
+		where file_name like concat('%',#{value},'%')
+		limit 5
+    </select>
+</mapper>

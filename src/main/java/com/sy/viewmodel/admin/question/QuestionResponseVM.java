@@ -3,6 +3,9 @@ package com.sy.viewmodel.admin.question;
 
 import com.sy.viewmodel.BaseVM;
 
+/**
+ * @author chris
+ */
 public class QuestionResponseVM extends BaseVM {
 
     private Integer id;
@@ -123,5 +126,23 @@ public class QuestionResponseVM extends BaseVM {
 
     public void setShortTitle(String shortTitle) {
         this.shortTitle = shortTitle;
+    }
+
+    @Override
+    public String toString() {
+        return "QuestionResponseVM{" +
+                "id=" + id +
+                ", questionType=" + questionType +
+                ", textContentId=" + textContentId +
+                ", createTime='" + createTime + '\'' +
+                ", subjectId=" + subjectId +
+                ", createUser=" + createUser +
+                ", score='" + score + '\'' +
+                ", status=" + status +
+                ", correct='" + correct + '\'' +
+                ", analyzeTextContentId=" + analyzeTextContentId +
+                ", difficult=" + difficult +
+                ", shortTitle='" + shortTitle + '\'' +
+                '}';
     }
 }

@@ -1,6 +1,7 @@
 package com.sy.viewmodel.admin.paper;
 
-import com.mindskip.xzs.base.BasePage;
+
+import com.sy.base.BasePage;
 
 public class ExamPaperAnswerPageRequestVM extends BasePage {
     private Integer subjectId;

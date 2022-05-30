@@ -1,3 +1,4 @@
+<!--
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -20,7 +21,7 @@
         </collection>
     </resultMap>
 
-    <!--查询指定老师所在的组织-->
+    &lt;!&ndash;查询指定老师所在的组织&ndash;&gt;
     <select id="getTeachers" resultMap="getTeacherMap">
 
         SELECT t.*,
@@ -31,7 +32,7 @@
         WHERE t.t_id = #{id}
     </select>
 
-    <!--添加教师-->
+    &lt;!&ndash;添加教师&ndash;&gt;
     <select id="addTeachers" resultType="Integer">
         INSERT INTO teacher (t_name,t_nickname,t_pwd,t_email,t_create_date,t_last_update)
             values (#{tName},#{tNickname},#{tPwd},#{tEmail},#{tCreateDate},#{tLastUpdate})
@@ -40,4 +41,4 @@
     <select id="delTeachers" resultType="integer">
 
     </select>
-</mapper>
+</mapper>-->

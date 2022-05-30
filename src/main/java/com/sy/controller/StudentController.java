@@ -1,5 +1,6 @@
 package com.sy.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.sy.entity.Student;
 import com.sy.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ import java.util.Date;
  */
 @Controller
 @RequestMapping(value = "/student")
-public class StudentController extends BaseController {
+public class StudentController {
 
     @Autowired
     private StudentService studentService;
@@ -44,16 +45,19 @@ public class StudentController extends BaseController {
         System.out.println("ִ执行 loginCheck");
         System.out.println(student.toString());
         model.addAttribute("student", student);
-        return studentService.loginCheck(student.getsName(), student.getsPwd(), student.getsBirth());
+        return studentService.loginCheck(student.getsName(),
+                student.getsPwd(), student.getsBirth());
     }
 
     @RequestMapping(value = "/addStudent", method = RequestMethod.POST)
-    public ModelAndView addStudent(@Valid @ModelAttribute("student") Student student, BindingResult bindingResult) {
+    public ModelAndView addStudent(@Valid @ModelAttribute("student") Student student,
+                                   BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getFieldError().getField());
             return new ModelAndView("redirect:/student/toIndex");
         }
-        boolean result = studentService.addStudent(student.getsName(), student.getsNickname(), student.getsPwd(), student.getsEmail(), student.getsBirth());
+        boolean result = studentService.addStudent(student.getsName(), student.getsNickname(),
+                student.getsPwd(), student.getsEmail(), student.getsBirth());
         if (result) {
             return new ModelAndView("redirect:/student/students");
         } else {
@@ -63,7 +67,9 @@ public class StudentController extends BaseController {
 
     @RequestMapping(value = "/updateStudent", method = RequestMethod.POST)
     public ModelAndView updateStudent(@Valid @ModelAttribute("student") Student student) {
-        boolean result = studentService.updateStudent(student.getsId(), student.getsName(), student.getsNickname(), student.getsPwd(), student.getsEmail(), student.getsUpdateDate(), student.getsBirth());
+        boolean result = studentService.updateStudent(student.getsId(), student.getsName(),
+                student.getsNickname(), student.getsPwd(), student.getsEmail(),
+                student.getsUpdateDate(), student.getsBirth());
         if (result) {
             return new ModelAndView("redirect:/student/students");
         } else {
@@ -72,7 +78,8 @@ public class StudentController extends BaseController {
     }
 
     @RequestMapping(value = "queryStudent/{sId}", method = RequestMethod.GET)
-    public void queryStudent(@Valid @PathVariable int sId, Model model, HttpServletResponse response) throws IOException {
+    public void queryStudent(@Valid @PathVariable int sId, Model model,
+                             HttpServletResponse response) throws IOException {
         String student = studentService.queryStudent(sId);
         if (student != null) {
             response.setCharacterEncoding("UTF-8");

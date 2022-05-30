@@ -1,5 +1,9 @@
 package com.sy.entity;
 
+
+import com.sy.entity.enums.QuestionTypeEnum;
+import com.sy.util.ExamUtil;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -159,7 +163,7 @@ public class Question implements Serializable {
     }
 
 
-/*    public void setCorrectFromVM(String correct, List<String> correctArray) {
+    public void setCorrectFromVM(String correct, List<String> correctArray) {
         int qType = this.getQuestionType();
         if (qType == QuestionTypeEnum.MultipleChoice.getCode()) {
             String correctJoin = ExamUtil.contentToString(correctArray);
@@ -167,7 +171,7 @@ public class Question implements Serializable {
         } else {
             this.setCorrect(correct);
         }
-    }*/
+    }
 
     @Override
     public String toString() {

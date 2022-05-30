@@ -1,6 +1,6 @@
 package com.sy.service;
 
-import com.sy.domain.TextContent;
+import com.sy.entity.TextContent;
 
 import java.util.Date;
 import java.util.List;

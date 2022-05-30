@@ -1,6 +1,7 @@
 package com.sy.viewmodel.student.question.answer;
 
-import com.mindskip.xzs.base.BasePage;
+
+import com.sy.base.BasePage;
 
 public class QuestionPageStudentRequestVM extends BasePage {
     private Integer createUser;

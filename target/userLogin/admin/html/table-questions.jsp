@@ -1,6 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+  String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,19 +14,10 @@
   <title>在线考试后台管理</title>
   <meta name="keywords"  content="设置关键词..." />
   <meta name="description" content="设置描述..." />
-  <meta name="author" content="DeathGhost" />
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-  <link rel="icon" href="${pageContext.request.contextPath}/admin/images/icon/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admin/css/style.css" />
-  <script src="${pageContext.request.contextPath}/admin/javascript/jquery.js"></script>
-  <script src="${pageContext.request.contextPath}/admin/javascript/plug-ins/customScrollbar.min.js"></script>
-  <script src="${pageContext.request.contextPath}/admin/javascript/plug-ins/echarts.min.js"></script>
-  <script src="${pageContext.request.contextPath}/admin/javascript/plug-ins/layerUi/layer.js"></script>
-  <script src="${pageContext.request.contextPath}/admin/editor/ueditor.config.js"></script>
-  <script src="${pageContext.request.contextPath}/admin/editor/ueditor.all.js"></script>
-  <script src="${pageContext.request.contextPath}/admin/javascript/plug-ins/pagination.js"></script>
-  <script src="${pageContext.request.contextPath}/admin/javascript/public.js"></script>
+  <link rel="icon" href="<%=contextPath%>/admin/images/icon/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="<%=contextPath%>/admin/css/style.css" />
 </head>
 <body>
 <div class="main-wrap">
@@ -47,7 +41,7 @@
               </i>用户管理<i class="icon-angle-right"></i>
             </dt>
             <dd>
-              <a href="#">学生管理</a>
+              <a href="<%=contextPath%>/student/students">学生管理</a>
             </dd>
             <dd>
               <a href="#">教师管理</a>
@@ -62,12 +56,15 @@
             <dt>
               </i>试卷管理<i class="icon-angle-right"></i>
             </dt>
+            <dd>
+              <a id="<%=contextPath%>/admin/questions/page" class="a_questions">试题管理</a>
+            </dd>
           </dl>
         </li>
         <li>
           <dl>
             <dt>
-              </i>试题管理<i class="icon-angle-right"></i>
+              <a href="<%=contextPath%>/student/students">学生管理</a>
             </dt>
           </dl>
         </li>
@@ -80,7 +77,6 @@
         </li>
       </ul>
     </nav>
-
   </div>
   <div class="content-wrap">
     <header class="top-hd">
@@ -96,13 +92,13 @@
             <a><i class="icon-random"></i>清除缓存</a>
           </li>
           <li>
-            <a><i class="icon-user"></i>管理员:<em>DeathGhost</em></a>
+            <a><i class="icon-user"></i>欢迎您，<%=session.getAttribute("admin")%></a>
           </li>
           <li>
             <a><i class="icon-bell-alt"></i>系统消息</a>
           </li>
           <li>
-            <a href="javascript:void(0)" id="JsSignOut"><i class="icon-signout"></i>安全退出</a>
+            <a href="<%=contextPath%>/admin/logout" id="JsSignOut"><i class="icon-signout"></i>安全退出</a>
           </li>
         </ul>
       </div>
@@ -117,7 +113,7 @@
           <hr>
         </section>
 
-        <button class="btn btn-secondary JopenMaskPanel_addStudent mr-10" style="margin-bottom: 20px; margin-left: 20px;">添加</button>
+<%--        <button class="btn btn-secondary JopenMaskPanel_addStudent mr-10" style="margin-bottom: 20px; margin-left: 20px;">添加</button>--%>
 
         <table class="table table-bordered table-striped table-hover">
           <thead>
@@ -133,17 +129,17 @@
           </tr>
           </thead>
           <tbody>
-          <c:forEach var="question" items="${questions}">
+          <c:forEach var="question" items="${page.list}">
           <tr class="cen">
             <td id="id">${question.id}</td>
-            <td id="id">${question.subjectId}</td>
+            <td id="subject_id">${question.subjectId}</td>
             <td id="question_type">${question.questionType}</td>
-            <td id="id">${question.infoTextContent}</td>
-            <td id="id">${question.score}</td>
-            <td id="id">${question.gradeLevel}</td>
-            <td id="id">${question.id}</td>
+            <td id="shortTitle">${question.shortTitle}</td>
+            <td id="score">${question.score}</td>
+            <td id="difficult">${question.difficult}</td>
+            <td id="createTime">${question.createTime}</td>
             <td>
-              <a title="编辑" id="${student.sId}" class="JopenMaskPanel_updateStudent mr-5">编辑</a>
+              <a title="编辑" id="${question.id}" class="JopenMaskPanel_updateQuestion mr-5">编辑</a>
 <%--              <a title="详情" class="mr-5">详情</a>--%>
               <a title="删除" class="a_delete">删除</a>
             </td>
@@ -151,7 +147,7 @@
           </c:forEach>
           </tbody>
         </table>
-        <p>${studentSingle.sId}</p>
+<%--        <p>${studentSingle.sId}</p>--%>
         <div class="panel panel-default">
           <div class="panel-bd">
             <div class="pagination"></div>
@@ -161,10 +157,13 @@
       </div>
     </main>
   </div>
+  <form id="questionForm" action="" method="post">
+    <input id="questionFormJson" name="questionFormJson" type="hidden"/>
+  </form>
 </div>
 
 <%-- 增改查学生表单 动态修改 方法定义在 public.js --%>
-<form:form name="form_student" method="post">
+<%--<form:form name="form_student" method="post">
 <div class="mask"></div>
 <div class="dialog">
   <div class="dialog-hd">
@@ -216,16 +215,27 @@
     <button class="btn btn-secondary JnoBtn" type="button">关闭</button>
   </div>
 </div>
-</form:form>
+</form:form>--%>
 
-<%-- 分页 --%>
+<script src="<%=contextPath%>/admin/javascript/jquery.js"></script>
+<script src="<%=contextPath%>/admin/javascript/plug-ins/customScrollbar.min.js"></script>
+<script src="<%=contextPath%>/admin/javascript/plug-ins/echarts.min.js"></script>
+<script src="<%=contextPath%>/admin/javascript/plug-ins/layerUi/layer.js"></script>
+<script src="<%=contextPath%>/admin/editor/ueditor.config.js"></script>
+<script src="<%=contextPath%>/admin/editor/ueditor.all.js"></script>
+<script src="<%=contextPath%>/admin/javascript/plug-ins/pagination.js"></script>
+<%--<script src="<%=contextPath%>/admin/javascript/public.js"></script>--%>
+<script src="<%=contextPath%>/admin/javascript/pages/index.js"></script>
 <script>
+  <%-- 分页 --%>
   $(".pagination").createPage({
-    pageCount:${page.totalPageCount},
-    current:${page.pageNow},
+    pageCount:${page.pages},
+    current:${page.pageNum},
     backFn:function(p){
+      console.log("p : " + p)
+      toPage(p);
       // console.log(p);
-      window.location.href="students?pageNow=" + p;
+      // window.location.href="page?pageIndex=" + p;
     }
   });
 </script>

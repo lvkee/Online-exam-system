@@ -1,7 +1,6 @@
 package com.sy.viewmodel.admin.user;
 
-import com.mindskip.xzs.base.BasePage;
-
+import com.sy.base.BasePage;
 
 public class UserEventPageRequestVM extends BasePage {
 

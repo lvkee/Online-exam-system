@@ -1,6 +1,8 @@
 package com.sy.viewmodel.student.education;
 
-import com.mindskip.xzs.viewmodel.BaseVM;
+
+
+import com.sy.viewmodel.BaseVM;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

@@ -1,8 +1,6 @@
 package com.sy.viewmodel.admin.task;
 
-import com.mindskip.xzs.base.BasePage;
-
-
+import com.sy.base.BasePage;
 
 public class TaskPageRequestVM extends BasePage {
     private Integer gradeLevel;

@@ -1,6 +1,7 @@
 package com.sy.viewmodel.student.exam;
 
-import com.mindskip.xzs.viewmodel.admin.exam.ExamPaperEditRequestVM;
+
+import com.sy.viewmodel.admin.exam.ExamPaperEditRequestVM;
 
 public class ExamPaperReadVM {
     private ExamPaperEditRequestVM paper;

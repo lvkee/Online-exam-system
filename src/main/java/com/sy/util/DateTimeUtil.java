@@ -43,10 +43,10 @@ public class DateTimeUtil {
     }
 
     /**
-     * Date format string.
+     * 日期格式化
      *
      * @param date the date
-     * @return the string
+     * @return yyyy-MM-dd HH:mm:ss
      */
     public static String dateFormat(Date date) {
         if (null == date) {

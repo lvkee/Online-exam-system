@@ -1,6 +1,7 @@
 package com.sy.viewmodel.student.exampaper;
 
-import com.mindskip.xzs.base.BasePage;
+
+import com.sy.base.BasePage;
 
 public class ExamPaperAnswerPageVM extends BasePage {
 

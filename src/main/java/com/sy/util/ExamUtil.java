@@ -7,7 +7,8 @@ import java.util.stream.Collectors;
 public class ExamUtil {
 
     /**
-     * Score to vm string.
+     * 分数转化
+     * 将千分制分数转化为百分制
      *
      * @param score the score
      * @return the string

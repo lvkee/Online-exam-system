@@ -2,15 +2,17 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<%
+    String contextPath = request.getContextPath();
+%>
 
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8"/>
     <title>登录-后台管理系统</title>
     <meta name="keywords" content="设置关键词..."/>
     <meta name="description" content="设置描述..."/>
-    <meta name="author" content="DeathGhost"/>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -20,10 +22,6 @@
     <meta name="format-detection" content="address=no">
     <link rel="icon" href="admin/images/icon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admin/css/style.css"/>
-    <script src="${pageContext.request.contextPath}/admin/javascript/jquery.js"></script>
-    <script src="${pageContext.request.contextPath}/admin/javascript/public.js"></script>
-    <script src="${pageContext.request.contextPath}/admin/javascript/plug-ins/customScrollbar.min.js"></script>
-    <script src="${pageContext.request.contextPath}/admin/javascript/pages/login.js"></script>
 </head>
 <body class="login-page">
 <section class="login-contain">
@@ -33,7 +31,7 @@
     </header>
     <div class="form-content">
         <%--@elvariable id="teacher" type="com.sy.entity"--%>
-        <form:form action="teacher/checkLogin.do" method="post">
+        <form:form action="${pageContext.request.contextPath}/admin/home" method="post">
             <table>
                 <tr class="form-group">
                     <td class="control-label">用户名:</td>
@@ -68,5 +66,16 @@
         <button class="btn btn-secondary JnoBtn">关闭</button>
     </div>
 </div>
+<script src="${pageContext.request.contextPath}/admin/javascript/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/admin/javascript/plug-ins/layerUi/layer.js"></script>
+<script src="${pageContext.request.contextPath}/admin/javascript/public.js"></script>
+<script src="${pageContext.request.contextPath}/admin/javascript/plug-ins/customScrollbar.min.js"></script>
+<script>
+    var s = <%=session.getAttribute("admin")%>;
+    if (!s) {
+        layer.msg("身份验证失败，请重新登陆")
+    }
+    console.log(s)
+</script>
 </body>
 </html>
