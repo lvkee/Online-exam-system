@@ -18,6 +18,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <link rel="icon" href="<%=contextPath%>/admin/images/icon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="<%=contextPath%>/admin/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/admin/static/layui/css/layui.css">
 </head>
 <body>
 <div class="main-wrap">
@@ -124,7 +125,8 @@
                 <div style="margin-bottom: 30px;margin-left: 10px">
                     <div class="form-cont" style="margin-bottom: 20px">
                         <label>文件名：</label>
-                        <input id="input_fileName" class="form-control form-boxed" type="text" autocomplete="off" placeholder="请输入文件名" style="width:200px; margin-right: 20px">
+                        <input id="input_fileName" class="form-control form-boxed" type="text" autocomplete="off"
+                               placeholder="请输入文件名" style="width:200px; margin-right: 20px">
                         <label>文件类型：</label>
                         <select id="select_type" style="width:auto;margin-right: 20px">
                             <option value="" disabled selected>请选择</option>
@@ -136,21 +138,25 @@
                             <option>ppt</option>
                             <option>txt</option>
                         </select>
-                        <button class="btn btn-primary" onclick="file_show('<%=contextPath%>', 1, document.getElementById('input_fileName').value, $('#select_type option:selected').val())">
+                        <button class="layui-btn layui-btn-normal"
+                                onclick="file_show('<%=contextPath%>', 1, document.getElementById('input_fileName').value, $('#select_type option:selected').val())"
+                                style="margin-right: 20px">
                             <span>查询</span>
                         </button>
-                        <button class="btn btn-secondary"
-                                onclick="upload(document.getElementById('file1'), '<%=contextPath%>')">
-                            <span>
-                                上传
-                            </span>
+                        <button type="button" class="layui-btn" id="test1">
+                            <i class="layui-icon">&#xe67c;</i>上传文件
                         </button>
-                        <input type="file" id="file1" name="file1" placeholder="选择文件" style="margin-bottom: 10px;margin-left: 20px"
-                               multiple>
                     </div>
                 </div>
 
-                <table class="table table-bordered table-striped table-hover">
+                <table class="layui-table">
+                    <colgroup>
+                        <col width="100">
+                        <col width="600">
+                        <col width="100">
+                        <col width="200">
+                        <col>
+                    </colgroup>
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -168,10 +174,16 @@
                             <td id="f_type">${file.fType}</td>
                             <td id="create_time">${file.createTime}</td>
                             <td>
-                                <a title="下载" target="_blank" href="<%=contextPath%>/admin/file/${file.fileName}"
-                                   download="">下载</a>
-                                <a title="删除" onclick="file_del(this, ${file.id}, '<%=contextPath%>' )"
-                                   class="a_delete">删除</a>
+                                <div class="layui-btn-container">
+                                    <a href="<%=contextPath%>/admin/file/${file.fileName}" class="layui-btn layui-btn-sm layui-btn-primary">
+                                        下载
+                                    </a>
+
+                                    <button type="button" class="layui-btn layui-btn-sm layui-btn-danger"
+                                            onclick="file_del(this, ${file.id}, '<%=contextPath%>' )">
+                                        <span>删除</span>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     </c:forEach>
@@ -247,6 +259,7 @@
 </div>
 </form:form>--%>
 
+<script src="<%=contextPath%>/admin/static/layui/layui.js"></script>
 <script src="<%=contextPath%>/admin/javascript/jquery.js"></script>
 <script src="<%=contextPath%>/admin/javascript/plug-ins/customScrollbar.min.js"></script>
 <script src="<%=contextPath%>/admin/javascript/plug-ins/echarts.min.js"></script>
@@ -263,7 +276,7 @@
         current:${page.pageNum},
         backFn: function (p) {
             console.log("p : " + p)
-            file_show("<%=contextPath%>", p, );
+            file_show("<%=contextPath%>", p,);
             // toPage(p);
             // console.log(p);
             // window.location.href="page?pageIndex=" + p;
@@ -274,7 +287,7 @@
         // window.history.replaceState(null, null, window.location.href);
         console.log(window.location.href);
     })
-    var inputEle = document.getElementById('file1');
+    /*var inputEle = document.getElementById('file1');
     var formData = new FormData();
     inputEle.onchange = function (e) {
         for (var i = 0; i < this.files.length; i++) {
@@ -282,7 +295,27 @@
             console.log(file);
             formData.append('file', file);
         }
-    }
+    }*/
+    layui.use('upload', function () {
+        var upload = layui.upload;
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#test1' //绑定元素
+            , url: '<%=contextPath%>/file/fileUtil/FileUpload' //上传接口
+            , accept: 'file'
+            , auto: true
+            , multiple: true
+            , done: function (res) {
+                //上传完毕回调
+                layer.msg("上传文件成功");
+                file_show("<%=contextPath%>", 1);
+            }
+            , error: function () {
+                //请求异常回调
+                layer.msg("上传失败，请重试");
+            }
+        });
+    });
 </script>
 </body>
 </html>

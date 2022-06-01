@@ -101,6 +101,13 @@ public class StudentController {
         }
     }
 
+    /**
+     * 实验十 6
+     * 1. "/admin/html/table-student" 修改为你的 JSP 页面
+     * @param request
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/students", method = RequestMethod.GET)
     public String showMyProduct(HttpServletRequest request, Model model) {
         this.studentService.showStudentsByPage(request, model);

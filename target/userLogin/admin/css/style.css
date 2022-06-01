@@ -878,7 +878,7 @@ a:active {
   text-align: right;
 }
 .cen {
-  text-align: center;
+  text-align: left;
 }
 .clear::after {
   content: " ";
@@ -2046,45 +2046,6 @@ textarea:focus {
   color: #ccc;
 }
 /*===================表格类===================*/
-.table {
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 10px;
-  border-spacing: 0;
-  border-collapse: collapse;
-  border: 1px solid #eceeef;
-}
-.table thead {
-  background: #f9f9f9;
-}
-.table th,
-.table td {
-  font-size: 12px;
-  padding: 10px;
-  line-height: 1.5;
-  vertical-align: top;
-  border-top: 1px solid #eceeef;
-}
-.table th {
-  vertical-align: bottom;
-  border-bottom: 1px solid #eceeef;
-  font-weight: normal;
-  font-size: 14px;
-}
-.table-bordered {
-  border: 1px solid #eceeef;
-}
-.table-bordered th,
-.table-bordered td {
-  border: 1px solid #eceeef;
-  vertical-align: middle;
-}
-.table-hover tbody tr:hover {
-  background-color: #f9f9f9;
-}
-.table-striped tbody tr:nth-of-type(even) {
-  background-color: #f9f9f9;
-}
 .card {
   background-color: white;
 }

@@ -19,6 +19,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
   <link rel="icon" href="<%=contextPath%>/admin/images/icon/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" type="text/css" href="<%=contextPath%>/admin/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="<%=contextPath%>/admin/static/layui/css/layui.css">
+
 </head>
 <body>
 <div class="main-wrap">
@@ -120,7 +122,7 @@
         <%-- 对不同功能指定不同 class ， 在 public.js 中定义不同函数 --%>
         <button class="btn btn-secondary JopenMaskPanel_addStudent mr-10" style="margin-bottom: 20px; margin-left: 20px;">添加</button>
 
-        <table class="table table-bordered table-striped table-hover">
+        <table class="layui-table">
           <thead>
           <tr>
             <th>ID</th>
@@ -132,6 +134,7 @@
           </tr>
           </thead>
           <tbody>
+          <%--实验十 7 表头和下面的属性需要修改为自己实体类中需要展示的属性--%>
           <c:forEach var="student" items="${students}">
           <tr class="cen">
             <td id="s_id">${student.sId}</td>
@@ -149,6 +152,7 @@
           </c:forEach>
           </tbody>
         </table>
+        <%--分页组件 放在 table 后面--%>
         <div class="panel panel-default">
           <div class="panel-bd">
             <div class="pagination"></div>
@@ -214,17 +218,24 @@
 </div>
 </form:form>
 
+<script src="<%=contextPath%>/admin/static/layui/layui.js"></script>
 <script src="<%=contextPath%>/admin/javascript/jquery.js"></script>
 <script src="<%=contextPath%>/admin/javascript/plug-ins/customScrollbar.min.js"></script>
 <script src="<%=contextPath%>/admin/javascript/plug-ins/echarts.min.js"></script>
 <script src="<%=contextPath%>/admin/javascript/plug-ins/layerUi/layer.js"></script>
 <script src="<%=contextPath%>/admin/editor/ueditor.config.js"></script>
 <script src="<%=contextPath%>/admin/editor/ueditor.all.js"></script>
+<%--实验十 9 分页 JS 将 pagination.js 导入到你的项目里 再在对应页面引入
+ 至此分页已实现 --%>
 <script src="<%=contextPath%>/admin/javascript/plug-ins/pagination.js"></script>
 <script src="<%=contextPath%>/admin/javascript/public.js"></script>
 <script src="<%=contextPath%>/admin/javascript/pages/student.js"></script>
 <script src="<%=contextPath%>/admin/javascript/pages/index.js"></script>
-<%-- 分页 --%>
+<%-- 实验十 8 分页组件对应 JS
+ 放在 </body> 前
+ pageCount 为分页后总页数
+ pageNow 为当前页
+ p 为点击按钮对应页面索引--%>
 <script>
   $(".pagination").createPage({
     pageCount:${page.totalPageCount},

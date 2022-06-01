@@ -42,6 +42,15 @@ public class StudentServiceImpl implements StudentService {
         }
     }
 
+    /**
+     * 实验十 5
+     * 1. pageNow 为请求参数，表示要显示的页面号（索引）
+     * 2. totalCount 为学生总数
+     * 3. 需要导入 util 包下的 Page 类
+     * 4. students 和 page 就是传入 JSP 页面的 model
+     * @param request request
+     * @param model model
+     */
     @Override
     public void showStudentsByPage(HttpServletRequest request, Model model) {
         String pageNow = request.getParameter("pageNow");

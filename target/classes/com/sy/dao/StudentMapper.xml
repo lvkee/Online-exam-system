@@ -61,14 +61,14 @@
 
     </delete>
 
-    <!-- 分页SQL语句 -->
+    <!-- 实验十 2 分页SQL语句 -->
     <select id="selectStudents" resultType="com.sy.entity.Student">
         select
             *
         from student limit #{startPos},#{pageSize}
     </select>
 
-    <!-- 取得记录的总数 -->
+    <!--      * 实验十 2 取得记录的总数 -->
     <select id="getStudentsCount" resultType="long">
         SELECT COUNT(*) FROM student
     </select>

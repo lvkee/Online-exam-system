@@ -68,6 +68,7 @@
             <mvc:exclude-mapping path="/admin/toLogin" />
             <mvc:exclude-mapping path="/admin/javascript/**"/>
             <mvc:exclude-mapping path="/admin/css/**"/>
+            <mvc:exclude-mapping path="/admin/static/**"/>
             <bean class="com.sy.interceptor.AccessInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

@@ -42,7 +42,7 @@ $(document).ready(function () {
 })
 
 function file_show(contextPath, pageIndex, fileName, fType) {
-    this.contextPath = contextPath;
+    layer.load(1);
     $.ajax(contextPath + "/file/fileUtil/page", {
         type: "POST",
         contentType: "application/json",
@@ -58,8 +58,10 @@ function file_show(contextPath, pageIndex, fileName, fType) {
         success: function (result) {
             $("#FormJson").val(result);
             $("#Form").attr("action", contextPath + "/file/fileUtil/show").submit();
+            layer.closeAll('loading');
         },
         error: function (result) {
+            layer.closeAll('loading');
         }
     })
 }

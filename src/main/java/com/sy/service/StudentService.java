@@ -22,6 +22,7 @@ public interface StudentService {
     String loginCheck(String sName, String sPwd, Date sBirth);
 
     /**
+     * 实验十 4
      * 分页显示学生
      * @param request request
      * @param model model

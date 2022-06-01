@@ -52,6 +52,7 @@ public interface StudentMapper {
     public int updateStudent(@Param("sId") int sId, @Param("sName") String sName, @Param("sNickname") String sNickname, @Param("sPwd") String sPwd, @Param("sEmail") String sEmail, @Param("sUpdateDate") Date sUpdateDate, @Param("sBirth") Date sBirth);
 
     /**
+     * 实验十 3
      * 使用注释方法传入多个参数，学生分页
      * @param startPos 起始位置
      * @param pageSize 每页容量
@@ -60,6 +61,7 @@ public interface StudentMapper {
     public List<Student> selectStudents(@Param(value="startPos") Integer startPos, @Param(value="pageSize") Integer pageSize);
 
     /**
+     * 实验十 3
      * 取得学生数量
      * @return 学生数量
      */

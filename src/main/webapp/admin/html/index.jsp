@@ -37,13 +37,10 @@
                             </i>用户管理<i class="icon-angle-right"></i>
                         </dt>
                         <dd>
-                            <a href="<%=contextPath%>/student/students">学生管理</a>
+                            <a href="<%=contextPath%>" class="a_users">学生管理</a>
                         </dd>
                         <dd>
-                            <a href="#">教师管理</a>
-                        </dd>
-                        <dd>
-                            <a href="#">组织管理</a>
+                            <a href="#">管理员管理</a>
                         </dd>
                     </dl>
                 </li>
@@ -127,6 +124,7 @@
 <script src="<%=contextPath%>/admin/javascript/plug-ins/pagination.js"></script>
 <script src="<%=contextPath%>/admin/javascript/pages/index.js"></script>
 <script src="<%=contextPath%>/admin/javascript/pages/file.js"></script>
+<script src="<%=contextPath%>/admin/javascript/pages/user.js"></script>
 <script src="<%=contextPath%>/admin/javascript/public.js"></script>
 
 
