@@ -8,6 +8,7 @@ $('.JopenMaskPanel_addStudent').click(function () {
     $("input[name='sPwd']").val(null);
     $("input[name='sEmail']").val(null);
     $("input[name='sBirth']").val(null);
+    // 对应 JSP 中的表单
     document.form_student.action = "addStudent";
     $('.dialog,.mask').show();
     $('.dialog').css('box-shadow', 'none');
@@ -34,7 +35,13 @@ $('.JopenMaskPanel_updateStudent').click(function () {
     $('.lt-title').text("编辑学生");
     console.log("queryStudent?sId=" + $(this).attr("id"));
 
-    // document.form_student.action = "queryStudent?sId=" + $('#s_id');
+    /**
+     * 1. 点击编辑后，先查询对应的学生，把查询到的结果填入表单中
+     * 2. 再通过表单进行 updateStudent
+     * @param method
+     * @param url
+     * @returns {Promise<unknown>}
+     */
     function ajax(method, url) { // 返回一个Promise对象
         return new Promise(function (resolve) {
             var xmlhttp = new XMLHttpRequest() // 创建异步请求 // 异步请求状态发生改变时会执行这个函数

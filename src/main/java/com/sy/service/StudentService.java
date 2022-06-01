@@ -30,7 +30,7 @@ public interface StudentService {
     void showStudentsByPage(HttpServletRequest request, Model model);
 
     /**
-     * 新增学生
+     * 实验九 3 新增学生
      * @param sName
      * @param sNickname
      * @param sPwd
@@ -41,7 +41,7 @@ public interface StudentService {
     boolean addStudent(String sName, String sNickname, String sPwd, String sEmail, Date sBirth);
 
     /**
-     * 修改学生信息
+     * 实验九 3 修改学生信息
      * @param sId
      * @param sName
      * @param sNickname
@@ -54,14 +54,14 @@ public interface StudentService {
     boolean updateStudent(int sId, String sName, String sNickname, String sPwd, String sEmail, Date sUpdateDate, Date sBirth);
 
     /**
-     * 通过 id 查询单个学生
+     * 实验九 3 通过 id 查询单个学生
      * @param sId
      * @return
      */
     String queryStudent(int sId);
 
     /**
-     * 通过 id 查询单个学生
+     * 实验九 3 通过 id 查询单个学生
      * @param sId
      * @return
      */

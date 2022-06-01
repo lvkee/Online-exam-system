@@ -30,8 +30,7 @@
                  JOIN organization o ON o.o_id = torg.o_id
         WHERE t.t_id = #{id}
     </select>-->
-
-    <!-- 添加学生 -->
+    <!-- 实验九 1 添加学生 先做实验十分页 再做增删改-->
     <insert id="addStudent">
 
         INSERT INTO student (s_name, s_nickname, s_pwd, s_email, s_create_date, s_update_date, s_birth)
@@ -39,7 +38,7 @@
 
     </insert>
 
-    <!-- 修改学生 -->
+    <!-- 实验九 1 修改学生 -->
     <update id="updateStudent">
 
         update student set s_name = #{sName}, s_nickname = #{sNickname}, s_pwd = #{sPwd}, s_email = #{sEmail}, s_update_date = #{sUpdateDate},s_birth = #{sBirth}
@@ -47,14 +46,14 @@
 
     </update>
 
-<!--    通过 id 查询某个学生信息 -->
+<!--    实验九 1 通过 id 查询某个学生信息 -->
     <select id="queryStudent" resultType="com.sy.entity.Student">
 
         select * from student where s_id = #{sId}
 
     </select>
 
-    <!--    通过 id 删除某个学生 -->
+    <!--    实验九 1 通过 id 删除某个学生 -->
     <delete id="deleteStudent">
 
         delete from student where s_id = #{sId}

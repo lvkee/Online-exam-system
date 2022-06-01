@@ -6,7 +6,8 @@ import javax.validation.constraints.Size;
 import java.sql.Date;
 
 /**
- * 实验十 1. 创建一个实体类 之后步骤的方法名和对应参数名根据你的实体修改
+ * 实验十 1. 创建一个实体类 之后所有步骤的方法名和对应参数名根据你的实体修改
+ * 2. @NotBlank... 为数据验证
  * @author chris
  */
 public class Student {

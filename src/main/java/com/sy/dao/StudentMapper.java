@@ -12,7 +12,7 @@ import java.util.List;
 public interface StudentMapper {
 
     /**
-     * 创建一个学生账号
+     * 实验九 2 创建一个学生账号
      * @param sName 学生用户名
      * @param sNickname 学生昵称
      * @param sPwd 学生密码
@@ -25,21 +25,21 @@ public interface StudentMapper {
     public Integer addStudent(@Param("sName") String sName, @Param("sNickname") String sNickname, @Param("sPwd") String sPwd, @Param("sEmail") String sEmail, @Param("sCreateDate") Date sCreateDate, @Param("sUpdateDate") Date sUpdateDate, @Param("sBirth") Date sBirth);
 
     /**
-     * 通过学生 id 查询单个学生
+     * 实验九 2 通过学生 id 查询单个学生
      * @param sId
      * @return
      */
     public Student queryStudent(@Param("sId") int sId);
 
     /**
-     * 通过学生 id 删除单个学生
+     * 实验九 2 通过学生 id 删除单个学生
      * @param sId
      * @return
      */
     public int deleteStudent(@Param("sId") int sId);
 
     /**
-     * 通过学生 id 修改学生信息
+     * 实验九 2 通过学生 id 修改学生信息
      * @param sId
      * @param sName
      * @param sNickname

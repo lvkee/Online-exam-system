@@ -120,6 +120,11 @@
         <%--    end 侧边栏 --%>
 
         <%-- 对不同功能指定不同 class ， 在 public.js 中定义不同函数 --%>
+        <%--
+        实验九 6 增加
+         将 admin/css 和 admin/static 、student.js 复制到你的项目中并在该页面引入
+         因为 class="btn btn-secondary JopenMaskPanel_addStudent mr-10" 有对应样式和函数
+        --%>
         <button class="btn btn-secondary JopenMaskPanel_addStudent mr-10" style="margin-bottom: 20px; margin-left: 20px;">添加</button>
 
         <table class="layui-table">
@@ -144,15 +149,21 @@
             <td id="s_birth">${student.sBirth}</td>
             <td>
               <%-- 对不同功能指定不同 class ， 在 public.js 中定义不同函数 --%>
+            <%--  实验九 6 修改
+            JopenMaskPanel_updateStudent 对应函数在 student.js 中 需导入后修改
+            --%>
               <a title="编辑" id="${student.sId}" class="JopenMaskPanel_updateStudent mr-5">编辑</a>
-<%--              <a title="详情" class="mr-5">详情</a>--%>
+                <%--
+                实验九 6 删除
+                del_student() 在 student.js 中 对应修改
+                --%>
               <a title="删除" onclick="del_student(this, ${student.sId})">删除</a>
             </td>
           </tr>
           </c:forEach>
           </tbody>
         </table>
-        <%--分页组件 放在 table 后面--%>
+        <%--实验十 8 分页组件 放在 table 后面--%>
         <div class="panel panel-default">
           <div class="panel-bd">
             <div class="pagination"></div>
@@ -163,6 +174,11 @@
   </div>
 </div>
 
+<%--
+  实验九 6 增加和修改的弹窗
+  需要引入 public.js、
+  至此实验九增删改完成
+--%>
 <%-- 增改查学生表单 动态修改 方法定义在 public.js --%>
 <form:form name="form_student" method="post">
 <div class="mask"></div>
@@ -241,7 +257,6 @@
     pageCount:${page.totalPageCount},
     current:${page.pageNow},
     backFn:function(p){
-      // console.log(p);
       window.location.href="students?pageNow=" + p;
     }
   });

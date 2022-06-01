@@ -49,6 +49,12 @@ public class StudentController {
                 student.getsPwd(), student.getsBirth());
     }
 
+    /**
+     * 实验九 5
+     * @param student
+     * @param bindingResult
+     * @return
+     */
     @RequestMapping(value = "/addStudent", method = RequestMethod.POST)
     public ModelAndView addStudent(@Valid @ModelAttribute("student") Student student,
                                    BindingResult bindingResult) {
@@ -65,6 +71,11 @@ public class StudentController {
         }
     }
 
+    /**
+     * 实验九 5
+     * @param student
+     * @return
+     */
     @RequestMapping(value = "/updateStudent", method = RequestMethod.POST)
     public ModelAndView updateStudent(@Valid @ModelAttribute("student") Student student) {
         boolean result = studentService.updateStudent(student.getsId(), student.getsName(),
@@ -77,6 +88,13 @@ public class StudentController {
         }
     }
 
+    /**
+     * 实验九 5
+     * @param sId
+     * @param model
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping(value = "queryStudent/{sId}", method = RequestMethod.GET)
     public void queryStudent(@Valid @PathVariable int sId, Model model,
                              HttpServletResponse response) throws IOException {
@@ -91,6 +109,11 @@ public class StudentController {
             }
         }
 
+    /**
+     * 实验九 5
+     * @param sId
+     * @return
+     */
     @RequestMapping(value = "deleteStudent/{sId}", method = RequestMethod.GET)
     public ModelAndView deleteStudent(@PathVariable int sId) {
         boolean result = studentService.deleteStudent(sId);

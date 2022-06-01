@@ -61,6 +61,7 @@ public class StudentServiceImpl implements StudentService {
 
         int totalCount = (int) studentMapper.getStudentsCount();
 
+        // 如果 pageNow 为空，则默认返回第一页
         if (pageNow != null) {
             page = new Page(totalCount, Integer.parseInt(pageNow));
             students = this.studentMapper.selectStudents(page.getStartPos(), page.getPageSize());
@@ -73,6 +74,15 @@ public class StudentServiceImpl implements StudentService {
         model.addAttribute("page", page);
     }
 
+    /**
+     * 实验九 4
+     * @param sName
+     * @param sNickname
+     * @param sPwd
+     * @param sEmail
+     * @param sBirth
+     * @return
+     */
     @Override
     public boolean addStudent(String sName, String sNickname, String sPwd, String sEmail, Date sBirth) {
         Date date = new Date();
@@ -85,6 +95,17 @@ public class StudentServiceImpl implements StudentService {
         }
     }
 
+    /**
+     * 实验九 4
+     * @param sId
+     * @param sName
+     * @param sNickname
+     * @param sPwd
+     * @param sEmail
+     * @param sUpdateDate
+     * @param sBirth
+     * @return
+     */
     @Override
     public boolean updateStudent(int sId, String sName, String sNickname, String sPwd, String sEmail, Date sUpdateDate, Date sBirth) {
         Date date = new Date();
@@ -97,6 +118,12 @@ public class StudentServiceImpl implements StudentService {
         }
     }
 
+    /**
+     * 实验九 4
+     * 以 JSON 形式返回
+     * @param sId
+     * @return
+     */
     @Override
     public String queryStudent(int sId) {
         try {
@@ -117,6 +144,11 @@ public class StudentServiceImpl implements StudentService {
         }
     }
 
+    /**
+     * 实验九 4
+     * @param sId
+     * @return
+     */
     @Override
     public boolean deleteStudent(int sId) {
         try {
