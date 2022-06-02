@@ -213,4 +213,28 @@ public class User implements Serializable {
     public void setWxOpenId(String wxOpenId) {
         this.wxOpenId = wxOpenId == null ? null : wxOpenId.trim();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userUuid='" + userUuid + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", realName='" + realName + '\'' +
+                ", age=" + age +
+                ", sex=" + sex +
+                ", birthDay=" + birthDay +
+                ", userLevel=" + userLevel +
+                ", phone='" + phone + '\'' +
+                ", role=" + role +
+                ", status=" + status +
+                ", imagePath='" + imagePath + '\'' +
+                ", createTime=" + createTime +
+                ", modifyTime=" + modifyTime +
+                ", lastActiveTime=" + lastActiveTime +
+                ", deleted=" + deleted +
+                ", wxOpenId='" + wxOpenId + '\'' +
+                '}';
+    }
 }

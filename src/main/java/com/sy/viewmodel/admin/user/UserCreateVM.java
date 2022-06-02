@@ -118,4 +118,21 @@ public class UserCreateVM {
     public void setUserLevel(Integer userLevel) {
         this.userLevel = userLevel;
     }
+
+    @Override
+    public String toString() {
+        return "UserCreateVM{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", realName='" + realName + '\'' +
+                ", age='" + age + '\'' +
+                ", status=" + status +
+                ", sex=" + sex +
+                ", birthDay='" + birthDay + '\'' +
+                ", phone='" + phone + '\'' +
+                ", role=" + role +
+                ", userLevel=" + userLevel +
+                '}';
+    }
 }

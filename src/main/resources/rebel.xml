@@ -6,16 +6,16 @@
 -->
 <application generated-by="intellij" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.zeroturnaround.com" xsi:schemaLocation="http://www.zeroturnaround.com http://update.zeroturnaround.com/jrebel/rebel-2_3.xsd">
 
-	<id>userLogin</id>
+	<id>exam</id>
 
 	<classpath>
-		<dir name="/Users/chris/Desktop/javaEE_SSM/target/classes">
+		<dir name="/Users/chris/Documents/project/javaEE_SSM/target/classes">
 		</dir>
 	</classpath>
 
 	<web>
 		<link target="/">
-			<dir name="/Users/chris/Desktop/javaEE_SSM/src/main/webapp">
+			<dir name="/Users/chris/Documents/project/javaEE_SSM/src/main/webapp">
 			</dir>
 		</link>
 	</web>

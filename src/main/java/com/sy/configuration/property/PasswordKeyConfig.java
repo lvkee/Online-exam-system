@@ -1,16 +1,24 @@
 package com.sy.configuration.property;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 /**
  * @description:  The type Password key config.
  */
+@Component
 public class PasswordKeyConfig {
-    @Value("publicKey")
+    @Value("${key.publicKey}")
     private String publicKey;
 
-    @Value("privateKey")
+    @Value("${key.privateKey}")
     private String privateKey;
+
+    public PasswordKeyConfig() {
+
+    }
 
     /**
      * Gets public key.

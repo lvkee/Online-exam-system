@@ -25,6 +25,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         this.systemConfig = systemConfig;
     }
 
+ /*   @Autowired
+    public AuthenticationServiceImpl(UserService userService) {
+        this.userService = userService;
+    }*/
+
 
     /**
      * @param username username
@@ -53,12 +58,19 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public String pwdEncode(String password) {
+        System.out.println("pwdEncode...");
+        try {
+            System.out.println("systemConfig.getPwdKey().getPublicKey() : " + systemConfig.getPwdKey().getPublicKey());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return RsaUtil.rsaEncode(systemConfig.getPwdKey().getPublicKey(), password);
     }
 
     @Override
     public String pwdDecode(String encodePwd) {
         return RsaUtil.rsaDecode(systemConfig.getPwdKey().getPrivateKey(), encodePwd);
+//        return "0";
     }
 
 

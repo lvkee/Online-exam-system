@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ page import="com.sy.entity.enums.UserLevelEnum" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
@@ -23,24 +24,26 @@
     session.setAttribute("sexMap", sexMap);*/
 %>
 <%!
-    HashMap<String, String> levelMap = new HashMap<>();
-    HashMap<String, String> sexMap = new HashMap<>();
+    HashMap<Integer, String> levelMap = new HashMap<>();
+    HashMap<Integer, String> sexMap = new HashMap<>();
 %>
 <%
-    levelMap.put("1", "一年级");
-    levelMap.put("2", "二年级");
-    levelMap.put("3", "三年级");
-    levelMap.put("4", "四年级");
-    levelMap.put("5", "五年级");
-    levelMap.put("6", "六年级");
-    levelMap.put("7", "初一");
-    levelMap.put("8", "初二");
-    levelMap.put("9", "初三");
-    levelMap.put("10", "高一");
-    levelMap.put("11", "高二");
-    levelMap.put("12", "高三");
-    sexMap.put("1", "男");
-    sexMap.put("2", "女");
+    levelMap.put(1, "一年级");
+    levelMap.put(2, "二年级");
+    levelMap.put(3, "三年级");
+    levelMap.put(4, "四年级");
+    levelMap.put(5, "五年级");
+    levelMap.put(6, "六年级");
+    levelMap.put(7, "初一");
+    levelMap.put(8, "初二");
+    levelMap.put(9, "初三");
+    levelMap.put(10, "高一");
+    levelMap.put(11, "高二");
+    levelMap.put(12, "高三");
+    sexMap.put(1, "男");
+    sexMap.put(2, "女");
+    request.setAttribute("levelMap", levelMap);
+    request.setAttribute("sexMap", sexMap);
 %>
 <!DOCTYPE html>
 <html>
@@ -155,7 +158,7 @@
                 <!--开始::内容-->
                 <section class="page-hd">
                     <header>
-                        <h2 class="title">文件管理</h2>
+                        <h2 class="title">学生管理</h2>
                     </header>
                     <hr>
                 </section>
@@ -166,9 +169,15 @@
                         <input id="input_userName" class="form-control form-boxed" type="text" autocomplete="off"
                                placeholder="请输入用户名" style="width:200px; margin-right: 20px">
                         <button class="layui-btn layui-btn-normal"
-                                onclick="user_show('<%=contextPath%>', 1, document.getElementById('input_userName').value)"
+                                onclick="user_show('<%=contextPath%>', 1, document.getElementById('input_userName').value, 1)"
                                 style="margin-right: 20px">
                             <span>查询</span>
+                        </button>
+
+                        <button class="layui-btn layui-btn-primary JopenMaskPanel_addUser"
+                                onclick="user_window()"
+                                style="margin-right: 20px">
+                            <span>添加</span>
                         </button>
 
                     </div>
@@ -203,8 +212,8 @@
                             <td>${v.id}</td>
                             <td>${v.userName}</td>
                             <td>${v.realName}</td>
-                            <td><%=levelMap.get("1")%></td>
-                            <td><%=sexMap.get("1")%></td>
+                            <td>${levelMap.get(v.userLevel)}</td>
+                            <td>${sexMap.get(v.sex)}</td>
                             <td>${v.phone}</td>
                             <td>${v.createTime}</td>
                             <td>
@@ -238,6 +247,101 @@
     </form>
 </div>
 
+<form id="addForm" action="<%=contextPath%>/admin/user/add" method="post">
+<div class="mask"></div>
+<div class="dialog">
+    <div class="dialog-hd">
+        <strong class="lt-title"></strong></strong>
+        <a class="rt-operate icon-remove JclosePanel" title="关闭"></a>
+    </div>
+    <div class="dialog-bd">
+        <!--start::-->
+        <div class="form-group-col-2">
+            <div class="form-label">用户名：</div>
+            <div class="form-cont">
+                <input type="text" name="userName" id="userName" required placeholder="请在此输入用户名" class="form-control form-boxed"  style="width:300px;">
+            </div>
+        </div>
+        <div class="form-group-col-2">
+            <div class="form-label">密码：</div>
+            <div class="form-cont">
+                <input type="text" name="password" id="password" required placeholder="请在此输入密码" class="form-control form-boxed" style="width:300px;">
+            </div>
+        </div>
+        <div class="form-group-col-2">
+            <div class="form-label">真实姓名：</div>
+            <div class="form-cont">
+                <input type="text" name="realName" id="realName" required eplaceholder="请在此输入您的真实姓名" class="form-control form-boxed" style="width:300px;">
+            </div>
+        </div>
+        <div class="form-group-col-2">
+            <div class="form-label">年龄：</div>
+            <div class="form-cont">
+                <input type="text" name="age" id="age" placeholder="请在此输入您的年龄" class="form-control form-boxed" style="width:300px;">
+            </div>
+        </div>
+        <div class="form-group-col-2">
+            <div class="form-label">性别：</div>
+            <div class="form-cont">
+                <select id="select_sex" style="width:auto;margin-right: 20px">
+                    <option value="" disabled selected>性别</option>
+                    <option value="1">男</option>
+                    <option value="2">女</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group-col-2">
+            <div class="form-label">生日：</div>
+            <div class="form-cont">
+                <input type="date" name="birthDay" id="birthDay" placeholder="请在此输入生日" class="form-control form-boxed" style="width:300px;">
+            </div>
+        </div>
+        <div class="form-group-col-2">
+            <div class="form-label">手机：</div>
+            <div class="form-cont">
+                <input type="text" name="phone" id="phone" placeholder="请在此输入电话" class="form-control form-boxed" style="width:300px;">
+            </div>
+        </div>
+        <div class="form-group-col-2">
+            <div class="form-label">年级：</div>
+            <div class="form-cont">
+                <select id="select_level" required style="width:auto;margin-right: 20px">
+                    <option value="" disabled selected>年级</option>
+                    <option value="1">一年级</option>
+                    <option value="2">二年级</option>
+                    <option value="3">三年级</option>
+                    <option value="4">四年级</option>
+                    <option value="5">五年级</option>
+                    <option value="6">六年级</option>
+                    <option value="7">初一</option>
+                    <option value="8">初二</option>
+                    <option value="9">初三</option>
+                    <option value="10">高一</option>
+                    <option value="11">高二</option>
+                    <option value="12">高三</option>
+                </select>
+            </div>
+        </div>
+        <!--end::-->
+    </div>
+    <div class="dialog-ft">
+        <button class="btn btn-info JyesBtn"
+                onclick="userAdd('<%=contextPath%>',
+                        $('#userName').val(),
+                        $('#password').val(),
+                        $('#realName').val(),
+                        $('#age').val(),
+                        $('#select_sex option:selected').val(),
+                        $('#birthDay').val(),
+                        $('#phone').val(),
+                        $('#select_level option:selected').val(),1)">
+            提交
+        </button>
+        <button class="btn btn-secondary JnoBtn" type="button">关闭</button>
+    </div>
+</div>
+</form>
+
 <script src="<%=contextPath%>/admin/static/layui/layui.js"></script>
 <script src="<%=contextPath%>/admin/javascript/jquery.js"></script>
 <script src="<%=contextPath%>/admin/javascript/plug-ins/customScrollbar.min.js"></script>
@@ -246,7 +350,8 @@
 <script src="<%=contextPath%>/admin/editor/ueditor.config.js"></script>
 <script src="<%=contextPath%>/admin/editor/ueditor.all.js"></script>
 <script src="<%=contextPath%>/admin/javascript/plug-ins/pagination.js"></script>
-<script src="<%=contextPath%>/admin/javascript/pages/file.js"></script>
+<script src="<%=contextPath%>/admin/javascript/pages/user.js"></script>
+<script src="<%=contextPath%>/admin/javascript/public.js"></script>
 <script>
     // 题目分页视图中分页组件对应
     <%-- 分页 --%>

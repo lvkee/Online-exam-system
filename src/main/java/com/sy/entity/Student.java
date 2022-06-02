@@ -3,7 +3,7 @@ package com.sy.entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * 实验十 1. 创建一个实体类 之后所有步骤的方法名和对应参数名根据你的实体修改

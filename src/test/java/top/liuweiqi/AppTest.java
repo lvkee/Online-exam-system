@@ -1,3 +1,4 @@
+/*
 package top.liuweiqi;
 
 import com.sy.dao.QuestionMapper;
@@ -23,9 +24,11 @@ public class AppTest {
 
     private SqlSession session;
 
-    /*private AppTest(QuestionService questionService) {
+    */
+/*private AppTest(QuestionService questionService) {
         this.questionService = questionService;
-    }*/
+    }*//*
+
 
     @Before
     public void start() {
@@ -38,10 +41,13 @@ public class AppTest {
         }
     }
 
-    /**
+    */
+/**
      * 测试 teacherMapper.getTeachers
-     */
-    /*@Test
+     *//*
+
+    */
+/*@Test
     public void test01() {
         TeacherMapper teacherMapper = session.getMapper(TeacherMapper.class);
         List<Teacher> list = teacherMapper.getTeachers(1);
@@ -51,21 +57,28 @@ public class AppTest {
                 System.out.println(teacher.gettNickname() + " " + organization.getoName());
             }
         }
-    }*/
+    }*//*
 
-    /**
+
+    */
+/**
      * 测试添加教师
-     */
-    /*@Test
+     *//*
+
+    */
+/*@Test
     public void test02() {
         TeacherMapper teacherMapper = session.getMapper(TeacherMapper.class);
         System.out.println(new Date());
         teacherMapper.addTeachers("1986985788ab", "张老师", "123456a", "1986985788@qq.com", new Date(), new Date());
-    }*/
+    }*//*
 
-    /**
+
+    */
+/**
      * 测试添加学生
-     */
+     *//*
+
     @Test
     public void test03() {
         StudentMapper studentMapper = session.getMapper(StudentMapper.class);
@@ -79,49 +92,61 @@ public class AppTest {
         System.out.println(studentMapper.queryStudent(34));
     }
 
-    /**
+    */
+/**
      * 测试添加题目
-     */
-   /* @Test
+     *//*
+
+   */
+/* @Test
     public void test05() {
         QuestionMapper questionMapper = session.getMapper(QuestionMapper.class);
         QuestionService questionService = new QuestionServiceImpl(questionMapper);
         Question question = new Question();
         question.setId(1);
         questionService.insert(question);
-    }*/
+    }*//*
 
-    /**
+
+    */
+/**
      * 测试删除题目 （软删除）
-     */
-    /*@Test
+     *//*
+
+    */
+/*@Test
     public void test06() {
         QuestionMapper questionMapper = session.getMapper(QuestionMapper.class);
         QuestionService questionService = new QuestionServiceImpl(questionMapper);
         Question question = new Question();
         question.setId(1);
         questionService.insert(question);
-    }*/
+    }*//*
 
-    /*@Test
+
+    */
+/*@Test
     public void test07() {
         QuestionMapper questionMapper = session.getMapper(QuestionMapper.class);
         QuestionService questionService = new QuestionServiceImpl(questionMapper);
         Question question = new Question();
         question.setId(1);
         questionService.insert(question);
-    }*/
+    }*//*
+
     
     
 
-    /*@Test
+    */
+/*@Test
     public void test02() throws IOException {
         OrgnizationMapper orgnizationMapper = session.getMapper(OrgnizationMapper.class);
         List<Orgnization> list = orgnizationMapper.getOrgnizations(3);
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).getoName());
         }
-    }*/
+    }*//*
+
 
     @After
     public void end() {
@@ -132,3 +157,4 @@ public class AppTest {
     }
 
 }
+*/

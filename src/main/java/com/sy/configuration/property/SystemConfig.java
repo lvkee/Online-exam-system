@@ -1,7 +1,6 @@
 package com.sy.configuration.property;
 
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +15,11 @@ public class SystemConfig {
     private PasswordKeyConfig pwdKey;
     private List<String> securityIgnoreUrls;
     private QnConfig qn;
+
+    @Autowired
+    public SystemConfig(PasswordKeyConfig pwdKey) {
+        this.pwdKey = pwdKey;
+    }
 
     /**
      * Gets pwd key.

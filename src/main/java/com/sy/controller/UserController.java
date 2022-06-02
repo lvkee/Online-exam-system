@@ -32,7 +32,7 @@ public class UserController extends BaseApiController {
 
     private final UserService userService;
 //    private final UserEventLogService userEventLogService;
-//    private final AuthenticationService authenticationService;
+    private final AuthenticationService authenticationService;
 
     /*@Autowired
     public UserController(UserService userService, UserEventLogService userEventLogService, AuthenticationService authenticationService) {
@@ -42,9 +42,9 @@ public class UserController extends BaseApiController {
     }*/
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, AuthenticationService authenticationService) {
         this.userService = userService;
-//        this.authenticationService = authenticationService;
+        this.authenticationService = authenticationService;
     }
 
 
@@ -71,8 +71,8 @@ public class UserController extends BaseApiController {
 //        泛型对象解析
         PageInfo pageInfo = gson.fromJson(page, new TypeToken<PageInfo<UserResponseVM>>() {
         }.getType());
-        System.out.println("page : " + pageInfo);
         model.addAttribute("page", pageInfo);
+        System.out.println("page : " + pageInfo);
         return "/admin/html/table-users";
     }
 
@@ -103,9 +103,10 @@ public class UserController extends BaseApiController {
     }*/
 
 
-/*    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public RestResponse<User> edit(@RequestBody @Valid UserCreateVM model) {
-        //create
+    @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public RestResponse<User> add(@RequestBody @Valid UserCreateVM model) {
+        System.out.println("model : " + model.toString());
         if (model.getId() == null) {
             User existUser = userService.getUserByUserName(model.getUserName());
             if (null != existUser) {
@@ -120,7 +121,7 @@ public class UserController extends BaseApiController {
             model.setBirthDay(null);
         }
         User user = modelMapper.map(model, User.class);
-
+        System.out.println("user : " + user.toString());
         if (model.getId() == null) {
             String encodePwd = authenticationService.pwdEncode(model.getPassword());
             user.setPassword(encodePwd);
@@ -128,6 +129,7 @@ public class UserController extends BaseApiController {
             user.setCreateTime(new Date());
             user.setLastActiveTime(new Date());
             user.setDeleted(false);
+            user.setStatus(1);
             userService.insertByFilter(user);
         } else {
             if (!StringUtils.isBlank(model.getPassword())) {
@@ -137,8 +139,9 @@ public class UserController extends BaseApiController {
             user.setModifyTime(new Date());
             userService.updateByIdFilter(user);
         }
+        System.out.println("user 3: " + user.toString());
         return RestResponse.ok(user);
-    }*/
+    }
 
 
     /*@RequestMapping(value = "/update", method = RequestMethod.POST)
